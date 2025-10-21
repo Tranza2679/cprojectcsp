@@ -8,7 +8,7 @@
 // Yaretzi Sanchez board visuals.
   void board(void){
 
-    char board1[] = {"_"};
+    char board1[] = {"--"};
     char board2[] = {"|"};
     char board3[10];
 
