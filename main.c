@@ -5,8 +5,8 @@
 #include <time.h>
 #include <stdlib.h>
 
-// Yaretzi Sanchez board visuals.
- void board(void){
+// Yaretzi Sanchez board visuals.// shows numbers on the grid for users pick
+ void board(char choice, int turn2){
     char grid[3][3] ={
         {'1', '2', '3'},
         {'4', '5', '6'},
@@ -19,15 +19,8 @@
         printf(" %c | %c | %c \n", grid[i][0], grid[i][1], grid[i][2]);
         if (i < 2){
             printf("---|---|---\n");
-        }
-    }
-}
-void change_board(char choice, int turn2){
-     char grid[3][3] ={
-        {'1', '2', '3'},
-        {'4', '5', '6'},
-        {'7','8','9'}};
-   if(turn2 == 1){
+        } // santiago player choice
+    if(turn2 == 1){
     grid[1][1] = choice;
    }else if(turn2 == 2){
     grid[2][1] = choice;
@@ -46,13 +39,18 @@ void change_board(char choice, int turn2){
     }else if(turn2 == 9){
     grid[3][3] = choice;
     };
-    return grid[3][3];}
+    }
+}   
+
+ 
 
   
 void game_play(void){
     char user_input;
     char ai_choice;
     int turns = 1;
+    int player_choice = 0;
+    char game_end[6] = "False";
     printf("Will you pick X or O: ");
     scanf("%c", &user_input);
     if(user_input== 'X'){
@@ -62,17 +60,33 @@ void game_play(void){
     }else{
         printf("Please choose again!");
     }
-    
-    char game_end[6] = "False";
-    while(game_end != "False");
-    if(user_input, 'X' && turns % 2 == 1){
-        int player_choice;
+    while(game_end == "False");
+    if(user_input == 'X' && turns % 2 == 1){
+        
         printf("Please pick a number between 1 and 9: ");
         scanf("%d", &player_choice);
-        change_board(user_input, player_choice);
-        board();
+        board(user_input, player_choice);
         turns +=1 ;}
-    
+    else if(user_input == 'O' && turns % 2 == 1){
+        int player_choice = 0;
+        printf("Please pick a number between 1 and 9: ");
+        scanf("%d", &player_choice);
+        board(user_input, player_choice);
+        turns +=1 ;}
+    else{
+    srand(time(NULL)); //sophia
+    for(int i =0; i<1; i++){
+    int num = rand() %9 +1;
+    if(num == player_choice){
+        int num = rand() %9 +1;
+    }else{
+        board(ai_choice, num);
+        turns +=1;
+    }
+    }}
+    void check_win(){
+
+    }
     
     
     
@@ -81,7 +95,13 @@ int main(void){
     game_play();
     
     // adelheid 
-    printf("Thank you for playing!");
-    
+    if(check_win()){
+        printf("congrats! you won!\n");
+        
+    }else if(check_lose()){
+        printf("too bad you lost..\n");
+    }else if(check_draw()){
+        printf("you tied.\n");
+    }
     return 0; 
 }
